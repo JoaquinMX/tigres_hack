@@ -1,6 +1,7 @@
 import './App.css';
 import EmergencyButton from '../components/EmergencyButton/EmergencyButton';
 import MessageDisplayBox from '../components/MessageDisplayBox/MessageDisplayBox';
+import MyMapComponent from '../components/MyMapComponent/MyMapComponent';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         message="5 metros de ti"
         user = "usuario"
       ></MessageDisplayBox>
+
+      <MyMapComponent />
     </div>
   );
 }
