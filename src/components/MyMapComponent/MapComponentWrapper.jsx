@@ -1,7 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Map from './MyMapComponent';
+import { MyContext } from '../../context/MyContext';
+
 const MapComponentWrapper = () => {
     const [currentPosition, setCurrentPosition] = useState([25.726590, -100.313666]);
+    const {isItPressed, setIsItPressed} = useContext(MyContext);
+
     useEffect(() => {
         /**
          * Retrieve Current Position
@@ -17,8 +21,7 @@ const MapComponentWrapper = () => {
     }
     
   return (
-    
-    <Map currentPosition={currentPosition} setCurrentPosition={setCurrentPosition} {...props}/>
+    <Map currentPosition={currentPosition} setCurrentPosition={setCurrentPosition} isItPressed={isItPressed} setIsItPressed={setIsItPressed} {...props}/>
   )
 }
 

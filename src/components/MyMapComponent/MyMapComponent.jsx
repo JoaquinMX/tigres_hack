@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MapContainer as LeafletMap, TileLayer, Marker, Popup } from "react-leaflet";
 import {HeatmapLayer} from "react-leaflet-heatmap-layer-v3";
 import { geojson } from "./atd";
 import MessageDisplayBox from "../MessageDisplayBox/MessageDisplayBox";
 import EmergencyButton from "../EmergencyButton/EmergencyButton";
-
 import { reAdjustateCoordinates } from './myCoordinates';
+
 let data = reAdjustateCoordinates(geojson.features);
 class Map extends React.Component {
 
@@ -24,12 +24,16 @@ class Map extends React.Component {
       EmergencyButtonIsClick,
       policeAssign,
       distance,
+      currentPosition,
+      setCurrentPosition,
+      isItPressed,
+      setIsItPressed
     } = this.props;
 
     const message = distance + " metros de ti";
 
     const componentToShow = user === 'usuario' ? ( 
-      EmergencyButtonIsClick ? <MessageDisplayBox
+      isItPressed ? <MessageDisplayBox
         message={message}
         user = "usuario"
     ></MessageDisplayBox> : <EmergencyButton></EmergencyButton>) :
@@ -39,7 +43,6 @@ class Map extends React.Component {
       user = "policia"
       ></MessageDisplayBox>) : null//muetra otros policias
     )
-    const {currentPosition, setCurrentPosition} = this.props;
     return (
       <LeafletMap center={this.state.position} zoom={this.state.zoom}>
         {componentToShow}
