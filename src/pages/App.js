@@ -4,18 +4,16 @@ import MessageDisplayBox from '../components/MessageDisplayBox/MessageDisplayBox
 import MyMapComponent from '../components/MyMapComponent/MyMapComponent';
 
 function App() {
+  const props = {
+    user: "policia",
+    EmergencyButtonIsClick:true,
+    policeAssign:true,
+    distance:"5",
+  }
   return (
     <div>
-      Hello World!
-      <EmergencyButton></EmergencyButton>
-      <br>
-      </br>
-      <MessageDisplayBox
-        message="5 metros de ti"
-        user = "usuario"
-      ></MessageDisplayBox>
-
-      <MyMapComponent />
+      <MyMapComponent {...props} >
+      </MyMapComponent>
     </div>
   );
 }

@@ -6,11 +6,13 @@
     padding: 15px 32px;
     text-align: left;
     display: inline-block;
+    position: relative;
+    top: 85%;
+    z-index: 400;
+    display: flex;
   }
   .messages{
     display: inline-block;
-    vertical-align:super;
-
   }
   .message{
     color:black;
@@ -23,9 +25,9 @@
     font-family: "Times New Roman", Times, serif;
   }
   .image{
-    display: inline-block;
-    width: 6%;
-    height: 6%;
+    display: inline-flex;
+    width: 12%;
+    height: 12%;
     padding: 1%;
   }
   .imagePerson{
