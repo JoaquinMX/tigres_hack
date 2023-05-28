@@ -10,11 +10,11 @@ import { reAdjustateCoordinates } from './myCoordinates';
 
 let data = reAdjustateCoordinates(geojson.features);
 
-const myIcon = new L.Icon({
+const police = new L.Icon({
     iconUrl: marker,
     iconRetinaUrl: marker,
     popupAnchor: null,
-    iconSize: [32,45],
+    iconSize: [60,75],
 });
 
 class Map extends React.Component {
@@ -29,6 +29,7 @@ class Map extends React.Component {
     };
   }
   render() {
+
     const {
       user,
       EmergencyButtonIsClick,
@@ -37,7 +38,8 @@ class Map extends React.Component {
       currentPosition,
       setCurrentPosition,
       isItPressed,
-      setIsItPressed
+      setIsItPressed,
+      policesPositions
     } = this.props;
 
     const message = distance + " metros de ti";
@@ -54,7 +56,7 @@ class Map extends React.Component {
       ></MessageDisplayBox>) : null//muetra otros policias
     )
     return (
-      <LeafletMap center={this.state.position} zoom={this.state.zoom}>
+      <LeafletMap center={currentPosition} zoom={this.state.zoom}>
         {componentToShow}
         <HeatmapLayer
           points={data}
@@ -64,7 +66,13 @@ class Map extends React.Component {
           max={100}
           minOpacity={0.2}
         />
-        <Marker icon={myIcon} position={currentPosition} />
+        <Marker position={currentPosition} />
+        {
+          policesPositions && policesPositions.map((coordinates) => {
+            console.log(coordinates)
+            return <Marker icon={police} position={coordinates} />
+          })
+        }
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
