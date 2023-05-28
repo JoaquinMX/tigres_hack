@@ -9,9 +9,16 @@ const MapComponentWrapper = () => {
         setCurrentPosition([25.726590, -100.313666]);
       }, [])
       
+    const props = {
+      user: "usuario",
+      EmergencyButtonIsClick:true,
+      policeAssign:false,
+      distance:"5",
+    }
+    
   return (
     
-    <Map currentPosition={currentPosition} setCurrentPosition={setCurrentPosition}/>
+    <Map currentPosition={currentPosition} setCurrentPosition={setCurrentPosition} {...props}/>
   )
 }
 

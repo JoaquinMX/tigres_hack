@@ -42,6 +42,7 @@ class Map extends React.Component {
     const {currentPosition, setCurrentPosition} = this.props;
     return (
       <LeafletMap center={this.state.position} zoom={this.state.zoom}>
+        {componentToShow}
         <HeatmapLayer
           points={data}
           longitudeExtractor={(m) => m[1]}
