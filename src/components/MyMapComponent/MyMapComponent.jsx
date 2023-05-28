@@ -4,9 +4,19 @@ import {HeatmapLayer} from "react-leaflet-heatmap-layer-v3";
 import { geojson } from "./atd";
 import MessageDisplayBox from "../MessageDisplayBox/MessageDisplayBox";
 import EmergencyButton from "../EmergencyButton/EmergencyButton";
+import L from 'leaflet';
+import marker from '../../public/policeman.svg';
 import { reAdjustateCoordinates } from './myCoordinates';
 
 let data = reAdjustateCoordinates(geojson.features);
+
+const myIcon = new L.Icon({
+    iconUrl: marker,
+    iconRetinaUrl: marker,
+    popupAnchor: null,
+    iconSize: [32,45],
+});
+
 class Map extends React.Component {
 
   constructor() {
@@ -54,7 +64,7 @@ class Map extends React.Component {
           max={100}
           minOpacity={0.2}
         />
-        <Marker position={currentPosition} />
+        <Marker icon={myIcon} position={currentPosition} />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
